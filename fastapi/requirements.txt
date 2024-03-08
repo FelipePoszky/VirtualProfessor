@@ -1,0 +1,12 @@
+sentence_transformers
+InstructorEmbedding
+faiss-cpu
+PyPDF2
+python-dotenv
+python-multipart
+pydantic
+fastapi
+uvicorn
+gunicorn
+langchain
+openai
