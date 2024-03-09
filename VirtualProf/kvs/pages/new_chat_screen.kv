@@ -1,0 +1,131 @@
+<CreateNewChat>:#:kivy !
+
+    MDBoxLayout:
+
+        orientation: 'vertical'
+        md_bg_color: app.theme_cls.bg_normal
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(5)
+            md_bg_color: app.theme_cls.primary_color
+            padding: [0, 0, 10, 0]
+            margin: 5
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_icon_color: 'Custom'
+                icon_color: app.theme_cls.opposite_bg_normal
+                size_hint: None, None
+                pos_hint: {'center_y': .5}
+                icon_size: '16sp'
+                user_font_size: '18sp'
+                padding: dp(0)
+                on_press: app.change_screen('message')
+            
+            MDBoxLayout:
+                orientation: 'horizontal'
+                padding: [0, 10, 0, 10]
+                pos_hint: {'center_y': .5}
+
+                Label:
+                    text: 'Nuevo Chat'
+                    pos_hint: {'center_y': .5}
+                    #size: self.texture_size
+                    size_hint: None, None
+                    font_size: dp(17)
+                    color: app.theme_cls.opposite_bg_normal
+                    bold: True
+            
+            MDIconButton:
+                icon: 'help-circle-outline'
+                theme_icon_color: 'Custom'
+                icon_color: app.theme_cls.opposite_bg_normal
+                size_hint: None, None
+                icon_size: '16sp'
+                user_font_size: '18sp'
+                pos_hint: {'center_x': .85, 'center_y': .5}
+                padding: dp(0)
+
+        MDBoxLayout:
+            orientation: 'horizontal'  
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_x': .5, 'center_y': .70}          
+
+        TwoLineListItem:
+            height: '60dp'
+            text: 'Modelo de lenguaje'
+            font_style: 'Subtitle2'
+            secondary_text: 'Chat GPT 3.5'
+            secondary_font_style: 'Caption'
+            on_press: app.modelos_bottom_sheet(self)
+
+        TwoLineListItem:
+            id: archivo
+            height: '60dp'
+            text: 'Añadir archivos, docs'
+            font_style: 'Subtitle2'
+            secondary_text: 'pdf, docx, txt, etc'
+            secondary_font_style: 'Caption'
+            on_press: app.open_filemanager('archivos')
+
+        TwoLineListItem:
+            id: agente
+            height: '60dp'
+            text: 'Rol/Profesion del agente'
+            font_style: 'Subtitle2'
+            secondary_text: 'Experto en Ciberseguridad'
+            secondary_font_style: 'Caption'
+            on_press: app.profesion_bottom_sheet(self)
+
+
+    MDFloatingActionButton:
+        icon: 'plus'
+        md_bg_color: app.theme_cls.primary_color
+        pos_hint: {'center_x': .85, 'center_y': .08}
+        on_press: app.create_new_chat()
+
+    MDFloatLayout:
+        size_hint: None, None
+        size: dp(100), dp(100)
+        pos_hint: {'center_x': .5, 'center_y': .80}
+        md_bg_color: 255, 255, 255, 255
+        radius: [100, ]      
+        FitImage:
+            id: imagen
+            pos: self.pos
+            size: self.size
+            radius: [self.size[0]/2, self.size[1]/2]
+            source: root.img if root.img is not None else "assets/icons8-chatbot-96.png"
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            
+    MDFloatingActionButton:
+        id: CambiarImagen
+        icon: 'image'
+        md_bg_color: app.theme_cls.primary_color
+        icon_size: '19sp'
+        type: 'small' 
+        pos_hint: {'center_x': .65, 'center_y': .73}
+        on_press: app.open_filemanager('imagen')
+
+
+    MDFloatLayout:
+        size_hint: .7, .07
+        pos_hint: {"center_x": .5,"center_y": .67}
+        TextInput:
+            id: Nombre_Chat
+            hint_text: 'Nombre del chat'
+            halign: 'center'         
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            font_name: "MPoppins"
+            size_hint_y: .75
+            background_color: 1, 1, 1, 0
+            foreground_color: app.theme_cls.opposite_bg_normal
+            cursor_color: app.theme_cls.primary_color
+            font_size: "14sp"
+            cursor_width: "2sp"
+            multiline: False
+

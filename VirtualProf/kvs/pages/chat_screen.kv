@@ -1,0 +1,153 @@
+<ChatScreen>:#:kivy !
+
+    textInput: textInput
+    msgHistory: msgHistory
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: app.theme_cls.bg_normal
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(5)
+            md_bg_color: app.theme_cls.bg_normal
+            padding: [0, 0, 10, 0]
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_text_color: 'Custom'
+                theme_color: app.theme_cls.opposite_bg_normal
+                user_font_size: '18sp'
+                size_hint: None, None
+                pos_hint: {'center_y': .5}
+                icon_size: '13sp'
+                padding: 0
+                on_press: app.change_screen('message')
+            MDBoxLayout:
+                size_hint: None, None
+                size: dp(30), dp(30)
+                orientation: 'vertical'
+                pos_hint: {'center_y': .5}
+                Avatar:
+                    source: root.image
+                    size: dp(30), dp(30)
+                    size_hint: None, None
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: [0, 10, 0, 10]
+                Label:
+                    text: root.text
+                    size: self.texture_size
+                    size_hint: None, None
+                    font_size: dp(17)
+                    color: app.theme_cls.opposite_bg_normal
+                    bold: True
+                MDBoxLayout:
+                    size_hint_x: None
+                    spacing: dp(5)
+                    MDIcon:
+                        icon: 'circle'
+                        theme_text_color: 'Custom'
+                        color: [0, 1, 0, 1]
+                        font_size: sp(10)
+                        size: dp(10), dp(10)
+                        size_hint: None, None
+                    Label:
+                        text: root.modelo
+                        size: self.texture_size
+                        size_hint: None, None
+                        font_size: sp(10)
+                        color: app.theme_cls.opposite_bg_normal
+            
+            MDIconButton:
+                icon: 'dots-vertical'
+                theme_icon_color: 'Custom'
+                icon_color: app.theme_cls.primary_color
+                size_hint: None, None
+                icon_size: '13sp'
+                user_font_size: '18sp'
+                pos_hint: {'center_x': .85, 'center_y': .5}
+                padding: dp(0)
+        
+        ScrollView:
+            id: ScrollView
+            scroll_y: 0  #  para que el ScrollView comience desde abajo
+            MDList:
+                id: msgHistory
+                spacing: dp(10)
+                padding: [0, 10, 0, 10]
+        MDBoxLayout:
+            padding: [10, ]
+            spacing: dp(5)
+            size_hint_y: None
+            height: min(textInput.height + dp(20), dp(100))
+            md_bg_color: app.theme_cls.bg_normal
+            MDBoxLayout:
+                md_bg_color: [.9, .9, .9, .9]
+                elevation: 0
+                height: min(textInput.height + dp(10), dp(100))  # Ajustar la altura en función del texto escrito, con un máximo de dp(70)
+                size_hint_y: None
+                radius: [15, ]
+                padding: [5, 5, 5, 5]
+                
+                ScrollView:
+                    id: scrlv
+                    scroll_y: 0  #  para que el ScrollView comience desde abajo
+
+                    TextInput:
+                        id: textInput
+                        font_size: sp(12)
+                        cursor_color: .5, .5, .5, 1
+                        color_mode: 'Custom'
+                        background_color: 0, 0, 0, 0
+                        current_hint_text_color: .5, .5, .5, 1
+                        hint_text: 'Preguntale algo...'
+                        padding: [7, ]
+                        pos_hint: {'center_y': .40}
+                        size_hint: 1, None
+                        height: self.minimum_height
+                        
+                        # height: self.minimum_height
+                        # on_text: self.height = max(self.minimum_height, self.line_height * (len(self._lines) + 1))
+                
+                MDIconButton:
+                    icon: 'microphone-outline'
+                    size_hint_x: None
+                    size_hint: None, None
+                    pos_hint: {'center_y': .5}
+                    theme_icon_color: 'Custom'
+                    icon_color: app.theme_cls.primary_color
+                    icon_size: '15sp'
+                    user_font_size: '18sp'
+                    padding: 0 
+
+                MDIconButton:
+                    icon: 'paperclip'
+                    size_hint_x: None
+                    size_hint: None, None
+                    pos_hint: {'center_y': .5}
+                    theme_icon_color: 'Custom'
+                    icon_color: app.theme_cls.primary_color
+                    icon_size: '15sp'
+                    user_font_size: '18sp'
+                    padding: 0 
+        
+            MDIconButton:
+                size_hint: None, None
+                icon: 'send'
+                elevation: 0
+                user_font_size: '16sp'
+                icon_size: '15sp'
+                theme_text_color: 'Custom'
+                text_color: [1, 1, 1, 1]
+                md_bg_color: app.theme_cls.accent_color
+                on_release: 
+                    app.send(textInput.text)
+                    textInput.text = ''  # Empty the text input
+                canvas.before:
+                    PushMatrix
+                    Rotate:
+                        angle: 45
+                        origin: self.center
+                        canvas.after:
+                            PopMatrix
+

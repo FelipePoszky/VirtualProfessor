@@ -1,0 +1,109 @@
+<signupPage>: #:kivy !
+
+    MDFloatLayout:
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "lab"
+        MDLabel:
+            text: "H e y !"
+            font_name: "BPoppins"
+            font_size: "26sp"
+            pos_hint: {"center_x": .6,"center_y": .85}
+            color: rgba (0, 0, 59, 255)
+        MDLabel:
+            text: "Crea una nueva cuenta"
+            font_name: "MPoppins"
+            font_size: "18sp"
+            pos_hint: {"center_x": .6, "center_y": .79}        
+            color: rgba(135, 133, 193, 255)
+        
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5,"center_y": .68}
+            TextInput:
+                id: username
+                hint_text: "Nombre de usuario"
+                font_name: "MPoppins"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5,"center_y": .56}
+            TextInput:
+                id: email
+                hint_text: "Correo"
+                font_name: "MPoppins"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5,"center_y": .44}
+            TextInput:
+                id: password
+                hint_text: "Contraseña"
+                font_name: "MPoppins"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                password: True
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        
+        Button:
+            text: "Registrarse"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .3}
+            background_color: 0, 0, 0, 0
+            font_name: "BPoppins"
+            on_release:
+                root.manager.transition.direction = "left"
+                app.signup(username.text, email.text, password.text)
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]

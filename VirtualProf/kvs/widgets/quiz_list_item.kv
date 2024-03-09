@@ -1,0 +1,157 @@
+<QuizListItem>: #:kivy !
+    id: id_question
+    ripple_behavior: True
+    md_bg_color: 0, 0, 0, 0
+    elevation: 0
+    size_hint_y: None
+    padding: [10, 5, 10, 0]
+    spacing: dp(10)
+    height: layer.height + question.height + buttons.height + explanation.height + dp(5)
+    id_question: root.id
+    estado: root.estado
+    resp_usuario: root.resp_usu
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        padding: [0, 10, 0, 10]
+        
+        BoxLayout:
+            id: layer
+            orientation: "horizontal"
+            size_hint_y: None
+            height: userAvatar.height + dp(10)
+            padding: [5, 10, 5, 3]
+            spacing: 2
+
+            Avatar:
+                id: userAvatar
+                source: root.chatImage
+                size_hint: None, None
+                size: dp(33), dp(33)
+                pos_hint: {"center_y": .5}
+                radius: [33, ]
+
+            BoxLayout:
+                orientation: "vertical"
+                padding: [7, 0, 0, 3]
+                spacing: 2
+                Label:
+                    id: userName
+                    text: root.chatName
+                    size_hint: None, None
+                    size: self.texture_size
+                    font_size: sp(13)
+                    bold: True
+                Label:
+                    id: time
+                    text: "2 hours ago"
+                    size_hint: None, None
+                    size: self.texture_size
+                    font_size: sp(11)
+                    text_color: 0.5, 0.5, 0.5, 1
+
+        Label:
+            id: question
+            text: root.question
+            size_hint_y: None
+            size_hint_x: 1
+            halign: "left"
+            height: self.texture_size[1]
+            font_size: sp(13)
+            bold: True
+            # Align the label to the left
+            text_size: self.width, None
+            valign: "middle"
+            padding: [5, 7, 5, 0]
+
+        GridLayout:
+            id: buttons
+            cols: 1
+            spacing: dp(7)
+            padding: dp(10)
+            height: self.minimum_height
+            size_hint_y: None
+
+            MDRectangleFlatIconButton:
+                id: Respuesta1
+                text: root.ans1
+                on_release: app.show_explanation(self, root.id, root.ans1, root.rightAns) if root.estado == "No Realizado" else None
+                size_hint_x: 1
+                size_hint_y: None
+                font_size: sp(13)
+                line_color: (1, 0, 0, 1) if root.estado == "Equivocación" and root.resp_usu == root.ans1 else (0, 1, 0, 1) if root.estado == "Acierto" and root.resp_usu == root.ans1 else (0, 1, 0, 1) if root.estado == "Equivocación" and root.rightAns == root.ans1 else (0.5, 0.5, 0.5, 1)
+                icon: "close-circle-outline" if root.estado == "Equivocación" and root.resp_usu == root.ans1 else "check-circle" if root.estado == "Acierto" and root.resp_usu == root.ans1 else "check-circle" if root.estado == "Equivocación" and root.rightAns == root.ans1 else ""
+                icon_color: (1, 0, 0, 1) if root.estado == "Equivocación" and root.resp_usu == root.ans1 else (0, 1, 0, 1) if root.estado == "Acierto" and root.resp_usu == root.ans1 else (0, 1, 0, 1) if root.estado == "Equivocación" and root.rightAns == root.ans1 else None
+                text_color: 0.5, 0.5, 0.5, 1  # Cambiar el color de la letra a gris
+                icon_halign: "right"
+                halign: "left"
+                padding: [8, 1, 8, 1]
+
+            MDRectangleFlatIconButton:
+                id: Respuesta2
+                text: root.ans2
+                on_release: app.show_explanation(self, root.id, root.ans2, root.rightAns) if root.estado == "No Realizado" else None
+                size_hint_x: 1
+                size_hint_y: None
+                font_size: sp(13)
+                line_color: (1, 0, 0, 1) if root.estado == "Equivocación" and root.resp_usu == root.ans2 else (0, 1, 0, 1) if root.estado == "Acierto" and root.resp_usu == root.ans2 else (0, 1, 0, 1) if root.estado == "Equivocación" and root.rightAns == root.ans2 else (0.5, 0.5, 0.5, 1)
+                icon: "close-circle-outline" if root.estado == "Equivocación" and root.resp_usu == root.ans2 else "check-circle" if root.estado == "Acierto" and root.resp_usu == root.ans2 else "check-circle" if root.estado == "Equivocación" and root.rightAns == root.ans2 else ""
+                icon_color: (1, 0, 0, 1) if root.estado == "Equivocación" and root.resp_usu == root.ans2 else (0, 1, 0, 1) if root.estado == "Acierto" and root.resp_usu == root.ans2 else (0, 1, 0, 1) if root.estado == "Equivocación" and root.rightAns == root.ans2 else None
+                text_color: 0.5, 0.5, 0.5, 1
+                halign: "left"
+                icon_halign: "right"
+                padding: [8, 1, 8, 1]
+
+            MDRectangleFlatIconButton:
+                id: Respuesta3
+                text: root.ans3
+                on_release: app.show_explanation(self, root.id, root.ans3, root.rightAns) if root.estado == "No Realizado" else None
+                size_hint_x: 1
+                size_hint_y: None
+                font_size: sp(13)
+                line_color: (1, 0, 0, 1) if root.estado == "Equivocación" and root.resp_usu == root.ans3 else (0, 1, 0, 1) if root.estado == "Acierto" and root.resp_usu == root.ans3 else (0, 1, 0, 1) if root.estado == "Equivocación" and root.rightAns == root.ans3 else (0.5, 0.5, 0.5, 1)
+                icon: "close-circle-outline" if root.estado == "Equivocación" and root.resp_usu == root.ans3 else "check-circle" if root.estado == "Acierto" and root.resp_usu == root.ans3 else "check-circle" if root.estado == "Equivocación" and root.rightAns == root.ans3 else ""                #icon_color: 0, 1, 0, 1  # Set the icon color to green
+                icon_color: (1, 0, 0, 1) if root.estado == "Equivocación" and root.resp_usu == root.ans3 else (0, 1, 0, 1) if root.estado == "Acierto" and root.resp_usu == root.ans3 else (0, 1, 0, 1) if root.estado == "Equivocación" and root.rightAns == root.ans3 else None
+                text_color: 0.5, 0.5, 0.5, 1
+                halign: "left"
+                icon_halign: "right"
+                padding: [8, 1, 8, 1]
+
+            MDRectangleFlatIconButton:
+                id: Respuesta4
+                text: root.ans4
+                on_release: app.show_explanation(self, root.id, root.ans4, root.rightAns) if root.estado == "No Realizado" else None
+                size_hint_x: 1
+                size_hint_y: None
+                font_size: sp(13)
+                line_color: (1, 0, 0, 1) if root.estado == "Equivocación" and root.resp_usu == root.ans4 else (0, 1, 0, 1) if root.estado == "Acierto" and root.resp_usu == root.ans4 else (0, 1, 0, 1) if root.estado == "Equivocación" and root.rightAns == root.ans4 else (0.5, 0.5, 0.5, 1)
+                icon: "close-circle-outline" if root.estado == "Equivocación" and root.resp_usu == root.ans4 else "check-circle" if root.estado == "Acierto" and root.resp_usu == root.ans4 else "check-circle" if root.estado == "Equivocación" and root.rightAns == root.ans4 else ""
+                icon_color: (1, 0, 0, 1) if root.estado == "Equivocación" and root.resp_usu == root.ans4 else (0, 1, 0, 1) if root.estado == "Acierto" and root.resp_usu == root.ans4 else (0, 1, 0, 1) if root.estado == "Equivocación" and root.rightAns == root.ans4 else None
+                text_color: 0.5, 0.5, 0.5, 1
+                halign: "left"
+                icon_halign: "right"
+                padding: [8, 1, 8, 1]
+
+        MDBoxLayout:
+            id: explanation
+            orientation: "vertical"
+            size_hint_y: None
+            height: explanation_text.height + dp(10)
+            md_bg_color: (0.15, 0.15, 0.15, 1) if root.estado != "No Realizado" else (0, 0, 0, 0)
+            radius: [10, ]
+            padding: [5, 10, 5, 10]
+            spacing: 2
+
+            MDLabel:
+                id: explanation_text
+                text: "Explicación: \n" + root.explanation #if root.estado == "Equivocación" or root.estado == "Acierto" else ""
+                padding: [7, 5, 5, 2]
+                width: self.texture_size[0] 
+                height: self.texture_size[1]
+                size_hint_y: None
+                text_size: id_question.width - 25 if self.width >= id_question.width - 80 else None, None
+                halign: 'left'
+                color: (0, 0, 0, 0) if root.estado == "No Realizado" else app.theme_cls.opposite_bg_normal
+                font_size: sp(12)
+                bold: True

@@ -1,0 +1,54 @@
+<ScoreListItem>: #:kivy!
+
+    ripple_behavior: True
+    md_bg_color: 0, 0, 0, 0
+    elevation: 0
+    size_hint_y: None
+    padding: [10, 0, 10, 0]
+    spacing: dp(5)
+    height: self.minimum_height + dp(20)
+    chat_id: root.id
+
+    MDBoxLayout:
+        id: data
+        orientation: "horizontal"
+        padding: [0, 5, 0, 5]
+        spacing: dp(10)
+        adaptive_height: True
+        MDBoxLayout:
+            id: name_total
+            orientation: "vertical"
+            height: chatName.height + total_quiz.height + dp(10)
+            Label:
+                id: chatName
+                text: root.chatName
+                theme_text_color: "Custom"
+                size: self.texture_size
+                size_hint: None, None
+                font_size: sp(15)
+                padding: [1, 1, 100, 1]
+                color: app.theme_cls.opposite_bg_normal
+                bold: True
+                
+            Label:
+                id: total_quiz
+                text: root.total
+                theme_text_color: "Custom"
+                size: self.texture_size
+                size_hint: None,None
+                font_size: sp(15)
+                padding: [1, 1, 100, 1]
+                color: app.theme_cls.opposite_bg_normal
+                bold: True
+
+        Label:
+            id: score
+            text: root.score
+            theme_text_color: "Custom"
+            size: self.texture_size
+            size_hint: None, None
+            padding: [100, 1, 1, 1]
+            bold: True
+            font_size: sp(15)
+            color: [.5, .5, .5, 1]
+
