@@ -58,9 +58,9 @@ Muestra tarjeta con información del usuario y tabla con estadísticas de rendim
 ### ⚙️ Página de Ajustes  
 Realizando: Cambios de **contraseña** y cambio entre **tema claro y oscuro**.
 - Cambio de contraseña  
-  ![Ajustes Contraseña](./ScreenShot/ajustes-page1.png)
+  ![Ajustes Contraseña](./ScreenShot/ajustes-page.png)
 - Cambio de tema claro/oscuro  
-  ![Ajustes Tema](./ScreenShots/ajustes-page2.png)
+  ![Ajustes Tema](./ScreenShots/tema-claro.png)
 
 ---
 
