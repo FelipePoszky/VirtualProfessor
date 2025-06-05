@@ -76,9 +76,9 @@ Realizando: Selección del **chat fuente** y **dificultad del quiz**.
 
 ---
 
-### 💡 Ejemplo de Conversación (DSA)  
+### 💡 Ejemplo de Conversación (DSA) | Tema Claro
 Conversación realizada dentro de un chat alimentado con PDF's con contenido de (por ejemplo, Algo. y Est. de Datos).  
-![Chat DSA - Tema Claro](./ScreenShots/chat-dsaClaro.png)
+![Chat DSA](./ScreenShots/chat-dsaClaro.png)
 
 ---
 
